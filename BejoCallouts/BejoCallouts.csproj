@@ -34,6 +34,9 @@
     <Reference Include="LSPD First Response">
       <HintPath>..\..\Dependencies\LSPD First Response.dll</HintPath>
     </Reference>
+    <Reference Include="LSPDFR+">
+      <HintPath>..\..\Dependencies\LSPDFR+.dll</HintPath>
+    </Reference>
     <Reference Include="RagePluginHookSDK">
       <HintPath>..\..\Dependencies\RagePluginHookSDK.dll</HintPath>
     </Reference>
@@ -50,7 +53,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Callouts\RapeVictim.cs" />
-    <Compile Include="Callouts\AmberAlert.cs" />
+    <Compile Include="Callouts\CarTheftSuspect.cs" />
+    <Compile Include="LSPDFRPlusFunctions.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

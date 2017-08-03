@@ -5,6 +5,7 @@ using System.Linq;
 using Rage;
 using LSPD_First_Response.Mod.API;
 using LSPD_First_Response.Mod.Callouts;
+using LSPD_First_Response.Engine.Scripting.Entities;
 
 namespace BejoCallouts.Callouts
 {
@@ -66,8 +67,7 @@ namespace BejoCallouts.Callouts
         public override bool OnBeforeCalloutDisplayed()
         {
             player = Game.LocalPlayer.Character;
-            victimSpawnPoint = World.GetNextPositionOnStreet(player.Position.Around(300f));
-            AddMinimumDistanceCheck(50f, victimSpawnPoint);
+            victimSpawnPoint = World.GetNextPositionOnStreet(player.Position.AroundBetween(50f, 300f));
 
             CalloutMessage = "Rape Victim";
             CalloutPosition = victimSpawnPoint;
@@ -244,11 +244,7 @@ namespace BejoCallouts.Callouts
 
         private void callTaxiForPed(Ped passanger)
         {
-            Vector3 taxiStartPos = World.GetNextPositionOnStreet(passanger.Position.Around(120f));
-            while (taxiStartPos.DistanceTo(passanger.Position) <= 30f)
-            {
-                taxiStartPos = World.GetNextPositionOnStreet(passanger.Position.Around(120f));
-            }
+            Vector3 taxiStartPos = World.GetNextPositionOnStreet(passanger.Position.AroundBetween(30f, 120f));
             taxi = new Vehicle("TAXI", taxiStartPos);
             taxiBlip = taxi.AttachBlip();
             taxiBlip.IsFriendly = true;
